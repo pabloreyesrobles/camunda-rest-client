@@ -1,6 +1,6 @@
 {
-    "name": "endpot/camunda-rest-client",
-    "description": "camunda rest client",
+    "name": "pabloreyesrobles/camunda-rest-client",
+    "description": "Camunda REST Client. Modded by pabloreyesrobles",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^6.0"

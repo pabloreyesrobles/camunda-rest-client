@@ -58,6 +58,11 @@ class BasicService
     private $responseContents;
 
     /**
+     * @var array username and password for basic authentication
+    */
+    private $auth = [];
+
+    /**
      * BasicService constructor.
      *
      * @param string $restApiUrl url of camunda rest engine
@@ -235,6 +240,16 @@ class BasicService
             $option[$this->requestContentType] = $body;
         }
 
+        echo "Request URL: " . $this->restApiUrl . $this->requestUrl . PHP_EOL;
+
+        // add basic authentication
+        if (!empty($this->auth)) {
+            $option['auth'] = $this->auth;
+        }
+
+        echo "Request Method: " . $this->requestMethod . PHP_EOL;
+        echo "Auth: " . json_encode($this->auth) . PHP_EOL;
+
         $client = new Client();
         try {
             $response = $client->request($this->requestMethod, $this->restApiUrl . $this->requestUrl, $option);
@@ -270,5 +285,16 @@ class BasicService
         $this->requestObject = null;
 
         return $this;
+    }
+
+    public function setAuth($username, $password)
+    {
+        $this->auth = [$username, $password, 'basic'];
+        return $this;
+    }
+
+    public function getAuth()
+    {
+        return $this->auth;
     }
 }
