@@ -240,15 +240,10 @@ class BasicService
             $option[$this->requestContentType] = $body;
         }
 
-        echo "Request URL: " . $this->restApiUrl . $this->requestUrl . PHP_EOL;
-
         // add basic authentication
         if (!empty($this->auth)) {
             $option['auth'] = $this->auth;
         }
-
-        echo "Request Method: " . $this->requestMethod . PHP_EOL;
-        echo "Auth: " . json_encode($this->auth) . PHP_EOL;
 
         $client = new Client();
         try {
